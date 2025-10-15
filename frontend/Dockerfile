@@ -9,7 +9,7 @@ RUN apk add --no-cache python3 make g++ bash
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm install --no-cache
 
 # Copy the rest of the app
 COPY . .

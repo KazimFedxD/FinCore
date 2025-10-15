@@ -163,14 +163,6 @@ CELERY_BEAT_SCHEDULE = {
         "task": "usermanagement.models.clear_verification_tokens",
         "schedule": 60.0,  # Run every 60 seconds
     },
-    "send-daily-forecast-letters": {
-        "task": "api.data.send_daily_forecast_letters",
-        "schedule": crontab(hour=12, minute=0),  # Run daily at 12:00 PM
-    },
-    "clear-expired-reports": {
-        "task": "api.data.clear_expired_reports",
-        "schedule": 60,  # Run every 30 minutes
-    },
 }
 CELERY_TIMEZONE = "UTC"
 
