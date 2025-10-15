@@ -3,13 +3,13 @@
 
 export const APP_CONFIG = {
   // App Information
-  name: "Your App Name",
-  description: "A modern full-stack application",
+  name: "Fincore",
+  description: "A Financial Management Application",
   version: "1.0.0",
   
   // Branding
   logo: {
-    text: "Your App Name", // Text shown in navbar
+    text: "Fincore", // Text shown in navbar
     url: "/", // Click destination
   },
   

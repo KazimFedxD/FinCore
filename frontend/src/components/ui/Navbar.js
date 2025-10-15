@@ -7,7 +7,7 @@ import { clearAllCookies } from "../../utils/auth";
 import { APP_CONFIG } from "../../config/app";
 
 export default function Navbar() {
-  const { isAuthenticated, logout: authLogout } = useAuth();
+  const { isAuthenticated, isLoading, logout: authLogout } = useAuth();
 
   const handleLogout = async () => {
     try {
@@ -29,9 +29,11 @@ export default function Navbar() {
     }
   };
 
-  const navItems = isAuthenticated 
-    ? APP_CONFIG.navigation.authenticated 
-    : APP_CONFIG.navigation.public;
+  const navItems = isLoading 
+    ? [] // Show no navigation items while loading
+    : isAuthenticated 
+      ? APP_CONFIG.navigation.authenticated 
+      : APP_CONFIG.navigation.public;
 
   return (
     <header className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-black/30 backdrop-blur-xl border border-white/10 text-white shadow-md rounded-xl w-[95%] max-w-7xl">
@@ -60,7 +62,12 @@ export default function Navbar() {
             </nav>
 
             {/* Auth Section */}
-            {isAuthenticated ? (
+            {isLoading ? (
+              // Show loading indicator while checking auth
+              <div className="w-10 h-10 rounded-full bg-black/30 flex items-center justify-center ring-1 ring-white/20">
+                <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+              </div>
+            ) : isAuthenticated ? (
               <div className="relative group">
                 <button
                   aria-haspopup="true"

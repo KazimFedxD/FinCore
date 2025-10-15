@@ -63,8 +63,23 @@ export async function getAccessToken() {
     });
     
     if (response.ok) {
-      // User is authenticated, access token is valid in cookies
-      return 'authenticated'; // Return a truthy value
+      // Get the response body to check if user data is actually present
+      const userData = await response.json();
+      
+      // Check if we have actual user data
+      if (userData && (userData.user_id || userData.id || userData.email)) {
+        // Save the user data to localStorage if it's not already there
+        if (userData.user_id && userData.email) {
+          saveAuthData({ 
+            user_id: userData.user_id, 
+            user_email: userData.email 
+          });
+        }
+        return 'authenticated';
+      } else {
+        clearAuthData();
+        return null;
+      }
     } else if (response.status === 401) {
       // Try to refresh token
       const refreshResponse = await fetch(`${APP_CONFIG.api.baseUrl}${APP_CONFIG.api.endpoints.refreshToken}`, {
@@ -73,8 +88,27 @@ export async function getAccessToken() {
       });
       
       if (refreshResponse.ok) {
-        // Token refreshed successfully
-        return 'authenticated';
+        // Token refreshed successfully, check auth again
+        const recheckResponse = await fetch(`${APP_CONFIG.api.baseUrl}${APP_CONFIG.api.endpoints.checkAuth}`, {
+          method: 'GET',
+          credentials: 'include'
+        });
+        
+        if (recheckResponse.ok) {
+          const userData = await recheckResponse.json();
+          if (userData && (userData.user_id || userData.id || userData.email)) {
+            if (userData.user_id && userData.email) {
+              saveAuthData({ 
+                user_id: userData.user_id, 
+                user_email: userData.email 
+              });
+            }
+            return 'authenticated';
+          }
+        }
+        
+        clearAuthData();
+        return null;
       } else {
         // Refresh failed, user needs to login
         clearAuthData();
