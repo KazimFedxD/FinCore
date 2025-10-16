@@ -10,14 +10,14 @@ if TYPE_CHECKING:
 
 def create_default_categories(apps, schema_editor):
     category: Category = apps.get_model('api', 'Category')
-    category.objects.get_or_create(name='Income', parent=True)
-    category.objects.get_or_create(name='Expense', parent=True)
+    category.objects.get_or_create(name='Income', root=True)
+    category.objects.get_or_create(name='Expense', root=True)
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('api', '0001_initial'),
+        ('api', '0003_alter_expense_date_alter_income_date'),
     ]
 
     operations = [

@@ -9,7 +9,6 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import Category, Income, Expense
-from backend.api import models
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -33,7 +32,7 @@ class CategoryView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request: Request) -> Response:
-        categories = Category.objects.all().values('id', 'name', 'type')
+        categories = Category.objects.all().values('id', 'name', 'description', 'parent', 'parent__name', 'root')
         return Response(list(categories))
 
     def post(self, request: Request) -> Response:

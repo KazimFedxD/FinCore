@@ -25,7 +25,7 @@ class Category(Model):
 class Income(Model):
     amount = FloatField()
     description = TextField(blank=True, null=True)
-    date = DateField(auto_now_add=True)
+    date = DateField()
     category = ForeignKey(Category, on_delete=SET_NULL, null=True, related_name="incomes")
 
     user = ForeignKey(AuthAcc, on_delete=CASCADE, related_name="incomes")
@@ -37,7 +37,7 @@ class Income(Model):
 class Expense(Model):
     amount = FloatField()
     description = TextField(blank=True, null=True)
-    date = DateField(auto_now_add=True)
+    date = DateField()
     category = ForeignKey(Category, on_delete=SET_NULL, null=True, related_name="expenses")
 
     user = ForeignKey(AuthAcc, on_delete=CASCADE, related_name="expenses")

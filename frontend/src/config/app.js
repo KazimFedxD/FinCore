@@ -38,6 +38,10 @@ export const APP_CONFIG = {
     authenticated: [
       { name: "Home", href: "/", icon: null },
       { name: "Dashboard", href: "/dashboard", icon: null },
+      { name: "Categories", href: "/categories", icon: null },
+      { name: "Incomes", href: "/incomes", icon: null },
+      { name: "Expenses", href: "/expenses", icon: null },
+      { name: "Reports", href: "/reports", icon: null },
     ],
     // User dropdown menu items
     userMenu: [
@@ -108,5 +112,8 @@ export const APP_CONFIG = {
 export const getConfig = (path) => {
   return path.split('.').reduce((obj, key) => obj?.[key], APP_CONFIG);
 };
+
+// Export API_BASE_URL for convenience
+export const API_BASE_URL = APP_CONFIG.api.baseUrl;
 
 export default APP_CONFIG;

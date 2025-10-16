@@ -32,20 +32,44 @@ export default function HomePage() {
               Hello, {user?.email}!
             </p>
             <p className="text-white/70">
-              You are successfully logged in. Start building your amazing application features here.
+              Manage your finances effortlessly with FinCore.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-8">
               <button 
                 onClick={() => window.location.href = '/dashboard'}
-                className="px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl transition-colors"
+                className="px-4 py-3 bg-gradient-to-br from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl transition-all shadow-lg"
               >
-                Go to Dashboard
+                📊 Dashboard
+              </button>
+              <button 
+                onClick={() => window.location.href = '/categories'}
+                className="px-4 py-3 bg-gradient-to-br from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white rounded-xl transition-all shadow-lg"
+              >
+                🏷️ Categories
+              </button>
+              <button 
+                onClick={() => window.location.href = '/incomes'}
+                className="px-4 py-3 bg-gradient-to-br from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white rounded-xl transition-all shadow-lg"
+              >
+                💰 Incomes
+              </button>
+              <button 
+                onClick={() => window.location.href = '/expenses'}
+                className="px-4 py-3 bg-gradient-to-br from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white rounded-xl transition-all shadow-lg"
+              >
+                💳 Expenses
+              </button>
+              <button 
+                onClick={() => window.location.href = '/reports'}
+                className="px-4 py-3 bg-gradient-to-br from-cyan-600 to-teal-600 hover:from-cyan-500 hover:to-teal-500 text-white rounded-xl transition-all shadow-lg"
+              >
+                📈 Reports
               </button>
               <button 
                 onClick={() => window.location.href = '/profile'}
-                className="px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-xl transition-colors"
+                className="px-4 py-3 bg-white/10 hover:bg-white/20 text-white rounded-xl transition-all shadow-lg border border-white/20"
               >
-                View Profile
+                👤 Profile
               </button>
             </div>
           </motion.div>

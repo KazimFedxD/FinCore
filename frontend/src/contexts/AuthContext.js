@@ -40,6 +40,7 @@ export const AuthProvider = ({ children }) => {
         }
       }
     } catch (error) {
+      console.error('AuthContext checkAuth error:', error);
       setIsAuthenticated(false);
       setUser(null);
     } finally {

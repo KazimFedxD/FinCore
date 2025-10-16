@@ -299,4 +299,8 @@ def is_authenticated(request: Request):
     """
     Check if the user is authenticated.
     """
-    return Response({}, status=200)
+    return Response({
+        "user_id": request.user.id,
+        "email": request.user.email,
+        "authenticated": True
+    }, status=200)

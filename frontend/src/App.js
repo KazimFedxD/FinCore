@@ -5,6 +5,11 @@ import Navbar from "./components/ui/Navbar";
 import AuthPage from "./pages/AuthPage";
 import VerifyPage from "./pages/VerifyPage";
 import HomePage from "./pages/HomePage";
+import DashboardPage from "./pages/DashboardPage";
+import CategoriesPage from "./pages/CategoriesPage";
+import IncomesPage from "./pages/IncomesPage";
+import ExpensesPage from "./pages/ExpensesPage";
+import ReportsPage from "./pages/ReportsPage";
 import Background from "./components/ui/Background";
 
 function App() {
@@ -17,6 +22,16 @@ function App() {
         return <VerifyPage />;
       case "/":
         return <HomePage />;
+      case "/dashboard":
+        return <DashboardPage />;
+      case "/categories":
+        return <CategoriesPage />;
+      case "/incomes":
+        return <IncomesPage />;
+      case "/expenses":
+        return <ExpensesPage />;
+      case "/reports":
+        return <ReportsPage />;
       default:
         return <div className="p-8 text-center text-gray-500">404 - Page Not Found</div>;
     }
